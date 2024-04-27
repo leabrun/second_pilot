@@ -3,17 +3,18 @@ import json
 
 
 def predict_answer(question_str: str) -> int:
-    loaded_vectorizer = load('tfid_vector_model.joblib')
+    model = load("model.joblib") 
 
-    params = loaded_vectorizer.transform([question_str])
-
-    clf = load("model.joblib")
-    result = clf.predict(params)
-
-    return result
+    if model.predict_proba([question_str]).max() < 0.3:
+        return [-1]
+    
+    return model.predict([question_str])
 
 
 def get_answer_from_db(id: int) -> str:
+    if id == -1:
+        return "Не совсем Вас понимаю. Ожидайте подключение оператора."
+
     with open("answers.json") as janswers:
         danswers = json.load(janswers)
             
