@@ -1,4 +1,5 @@
 from joblib import load
+import json
 
 
 def predict_answer(question_str: str) -> int:
@@ -13,4 +14,7 @@ def predict_answer(question_str: str) -> int:
 
 
 def get_answer_from_db(id: int) -> str:
-    pass
+    with open("answers.json") as janswers:
+        danswers = json.load(janswers)
+            
+    return danswers[str(id)]

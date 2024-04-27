@@ -4,9 +4,10 @@ from aiogram.filters import Command
 import asyncio
 import requests
 import os
+import json
 
-from config import TXT_EXAPMLES, URL
-TOKEN_API = os.environ.get("token_tg")
+from constants import TXT_EXAPMLES, URL
+TOKEN_API = os.environ.get("TG_TOKEN")
 
 
 dp = Dispatcher()
@@ -21,9 +22,9 @@ async def start_command(message: types.Message):
 
 @dp.message()
 async def echo(message: types.Message):
-    print(message)
     response = requests.post(url=URL, params={"question_str": message.text})
-    await message.answer(f"{response.text}")
+    answer_dict = json.loads(response.text)
+    await message.answer(f"{answer_dict['answer']}")
 
 
 async def main():

@@ -1,9 +1,7 @@
 FROM python:3.9
 WORKDIR /app
 
-ENV token_tg=6958567737:AAHezDIF-Ow4DrRIxJ6JBErl-KvjtYzz7HU
-
-RUN apt-get update && apt-get install
+ENV TG_TOKEN=6958567737:AAHezDIF-Ow4DrRIxJ6JBErl-KvjtYzz7HU
 
 RUN python -m pip install --upgrade pip
 
