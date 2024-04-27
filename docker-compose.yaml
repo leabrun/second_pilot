@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  api-service:
+    build:
+      context: ./
+    command: uvicorn api:app --reload --host 0.0.0.0 --port 8000
+    container_name: api-service
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/app
+  
+  tg-service:
+    build:
+      context: ./
+    command: python3 chat-bot.py
+    container_name: chat-bot-service
+    volumes:
+      - ./:/app
+    depends_on:
+      - api-service
