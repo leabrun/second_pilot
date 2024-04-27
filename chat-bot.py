@@ -3,8 +3,10 @@ from aiogram.methods import DeleteWebhook
 from aiogram.filters import Command
 import asyncio
 import requests
+import os
 
-from config import TOKEN_API, TXT_EXAPMLES, URL
+from config import TXT_EXAPMLES, URL
+TOKEN_API = os.environ.get("token_tg")
 
 
 dp = Dispatcher()

@@ -1,5 +1,3 @@
-TOKEN_API = "6958567737:AAHezDIF-Ow4DrRIxJ6JBErl-KvjtYzz7HU"
-
 TXT_EXAPMLES = {
     "start": """
                 Здравствуйте! Я - виртуальный ассистент GeekBrains.
