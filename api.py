@@ -1,4 +1,6 @@
-from fastapi import FastAPI 
+from fastapi import FastAPI
+
+from utils import predict_answer, get_answer_from_db
 
 
 app = FastAPI()
@@ -6,5 +8,6 @@ app = FastAPI()
 
 @app.post("/question/")
 async def get_answer(question_str: str) -> dict:
-    # bla bla
-    return {"answer": f"{question_str}"}
+    answer_id = predict_answer(question_str=question_str)
+    answer_str = get_answer_from_db(id=answer_id[0])
+    return {"answer": f"{answer_id[0]}"}
