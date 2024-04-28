@@ -17,6 +17,6 @@ app.add_middleware(
 
 @app.post("/question/")
 async def get_answer(question_str: str) -> dict:
-    answer_id = predict_answer(question_str=question_str)
-    answer_str = get_answer_from_db(id=answer_id[0])
+    answer_list = predict_answer(question_str=question_str)
+    answer_str = get_answer_from_db(id_list=answer_list)
     return {"answer": f"{answer_str}"}
