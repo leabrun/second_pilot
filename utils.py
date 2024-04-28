@@ -6,7 +6,7 @@ def predict_answer(question_str: str) -> int:
     model = load("model.joblib") 
     arr = [question_str]
 
-    if model.predict_proba(arr).max() < 0.1:
+    if model.predict_proba(arr).max() < 0.3:
         proba = model.predict_proba(arr)
     
         dictionary = {}
